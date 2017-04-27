@@ -1,0 +1,14 @@
+FROM node:boron
+
+ENV TIME_ZONE              Europe/Istanbul
+RUN echo "$TIME_ZONE" > /etc/timezone
+
+WORKDIR /app
+
+EXPOSE 8081
+
+ADD *.js /app/
+ADD package.json /app/
+RUN npm install
+
+CMD ["/bin/sh", "-c", "node /app/*.js"]
